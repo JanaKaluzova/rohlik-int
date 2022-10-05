@@ -1,9 +1,10 @@
 import { Button, Card } from 'react-bootstrap'
 import { useShoppingCart } from '../context/ShoppingCartContext'
+import { formatCurrency } from '../utilities/formatCurrency'
 
 type Price = {
   full: number
-  currency: string
+  /*currency: string*/
 }
 
 export type StoreItemProps = {
@@ -21,10 +22,8 @@ export const StoreItem: React.FC<StoreItemProps> = ({ id, name, image, price }) 
       <Card.Img variant="top" src={image} height="200px" style={{ objectFit: 'contain' }} />
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-          <span className="fs-2">{name}</span>
-          <span className="ms-2 text-muted d-flex flex-row">
-            {price.full} {price.currency}
-          </span>
+          <span className="fs-5">{name}</span>
+          <span className="ms-2 text-muted d-flex flex-row">{formatCurrency(price.full)}</span>
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (
