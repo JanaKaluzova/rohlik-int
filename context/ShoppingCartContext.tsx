@@ -1,5 +1,6 @@
 import { createContext, PropsWithChildren, useContext, useState } from 'react'
 import { ShoppingCart } from '../components/ShoppingCart'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 type ShoppingCartContext = {
   openCart: () => void
@@ -25,7 +26,7 @@ export const useShoppingCart = () => {
 
 export const ShoppingCartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart', [])
 
   const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
   const openCart = () => setIsOpen(true)

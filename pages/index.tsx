@@ -2,12 +2,10 @@ import type { NextPage } from 'next'
 import { Col, Container, Row } from 'react-bootstrap'
 import useSWR from 'swr'
 import { StoreItem, StoreItemProps } from '../components/StoreItem'
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+import { useProducts } from '../hooks/useProducts'
 
 export default function Index() {
-  const { data, error } = useSWR('/api/staticdata', fetcher)
-
+  const { data, error } = useProducts()
   if (error) return <div>Failed to load</div>
 
   if (!data) return <div>Loading...</div>
@@ -16,7 +14,7 @@ export default function Index() {
     <>
       <h1>Store</h1>
       <Row md={2} xs={1} lg={3} className="g-3">
-        {data.map((item: StoreItemProps) => (
+        {data.map((item) => (
           <Col key={item.id}>
             {' '}
             <StoreItem {...item} />{' '}
