@@ -9,15 +9,15 @@ type CartItemProps = {
 }
 
 export const CartItem: React.FC<CartItemProps> = ({ id, quantity }) => {
+  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart()
+
   const { data } = useProducts()
   const item = data?.find((i) => i.id === id)
   if (item == null) return null
 
-  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart()
-
   return (
     <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
-      <img src={item.image} style={{ width: '80px', height: '75px', objectFit: 'contain' }} />
+      <img src={item.image} style={{ width: '50px', height: '50px', objectFit: 'contain' }} />
       <div className="me-auto">
         <div className="text-muted" style={{ fontSize: '0.75rem' }}>
           {item.name}

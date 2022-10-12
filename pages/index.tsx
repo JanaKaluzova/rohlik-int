@@ -1,7 +1,6 @@
 import type { NextPage } from 'next'
-import { Col, Container, Row } from 'react-bootstrap'
-import useSWR from 'swr'
-import { StoreItem, StoreItemProps } from '../components/StoreItem'
+import { Col, Row } from 'react-bootstrap'
+import { StoreItem } from '../components/StoreItem'
 import { useProducts } from '../hooks/useProducts'
 
 export default function Index() {
@@ -12,15 +11,17 @@ export default function Index() {
 
   return (
     <>
-      <h1>Store</h1>
-      <Row md={2} xs={1} lg={3} className="g-3">
-        {data.map((item) => (
-          <Col key={item.id}>
-            {' '}
-            <StoreItem {...item} />{' '}
-          </Col>
-        ))}
-      </Row>
+      <div className="ms-2">
+        <h1>Store</h1>
+        <Row md={4} xs={2} lg={6} xl={9} className="g-2">
+          {data.map((item) => (
+            <Col key={item.id}>
+              {' '}
+              <StoreItem {...item} />{' '}
+            </Col>
+          ))}
+        </Row>
+      </div>
     </>
   )
 }

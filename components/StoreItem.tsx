@@ -19,12 +19,12 @@ export const StoreItem: React.FC<StoreItemProps> = ({ id, name, image, price }) 
   const quantity = getItemQuantity(id)
   return (
     <Card className="h-100">
-      <Card.Img variant="top" src={image} height="200px" style={{ objectFit: 'contain' }} />
+      <Card.Img className="p-2" src={image} height="100px" style={{ objectFit: 'contain' }} />
       <Card.Body className="d-flex flex-column">
-        <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-          <span className="fs-5">{name}</span>
-          <span className="ms-2 text-muted d-flex flex-row">{formatCurrency(price.full)}</span>
-        </Card.Title>
+        <div className="d-flex flex-column justify-content-between align-items-center mb-auto">
+          <span className="fs-20 mt-4">{name}</span>
+          <span className="text-muted d-flex flex-row mt-auto mb-2">{formatCurrency(price.full)}</span>
+        </div>
         <div className="mt-auto">
           {quantity === 0 ? (
             <Button onClick={() => increaseCartQuantity(id)} variant="outline-primary" className="w-100">
