@@ -12,7 +12,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="Rohlik inteview app" />
       </Head>
       <ShoppingCartProvider>
-        <Header />
         <Component {...pageProps} />
       </ShoppingCartProvider>
     </>

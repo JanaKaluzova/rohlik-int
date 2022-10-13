@@ -1,12 +1,8 @@
 import { Button, Stack } from 'react-bootstrap'
 import { useShoppingCart } from '../context/ShoppingCartContext'
 import { useProducts } from '../hooks/useProducts'
+import { CartItemProps } from '../types/types'
 import { formatCurrency } from '../utilities/formatCurrency'
-
-type CartItemProps = {
-  id: number
-  quantity: number
-}
 
 export const CartItem: React.FC<CartItemProps> = ({ id, quantity }) => {
   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart()

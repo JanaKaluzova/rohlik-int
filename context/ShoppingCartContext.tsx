@@ -1,21 +1,8 @@
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react'
 import { ShoppingCart } from '../components/ShoppingCart'
-
-type ShoppingCartContext = {
-  openCart: () => void
-  closeCart: () => void
-  getItemQuantity: (id: number) => number
-  increaseCartQuantity: (id: number) => void
-  decreaseCartQuantity: (id: number) => void
-  removeFromCart: (id: number) => void
-  cartQuantity: number
-  cartItems: CartItem[]
-}
-
-type CartItem = {
-  id: number
-  quantity: number
-}
+import { useLocalStorage } from '../hooks/useLocalStorage'
+import { CartItem } from '../types/types'
+import { ShoppingCartContext } from '../types/types'
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext)
 
@@ -26,25 +13,7 @@ export const useShoppingCart = () => {
 export const ShoppingCartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
 
-  const initialState: CartItem[] = []
-  const [cartItems, setCartItems] = useState<CartItem[]>(initialState)
-
-  useEffect(() => {
-    const items = localStorage.getItem('cart')
-    if (items === null) {
-      return
-    }
-    const cartData = JSON.parse(items)
-    if (cartData) {
-      setCartItems(cartData)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (cartItems !== initialState) {
-      localStorage.setItem('cart', JSON.stringify(cartItems))
-    }
-  }, [cartItems])
+  const { cartItems, setCartItems } = useLocalStorage()
 
   const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)
   const openCart = () => setIsOpen(true)

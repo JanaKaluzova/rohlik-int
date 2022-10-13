@@ -1,13 +1,9 @@
-import { format } from 'path'
-import { Card, CarouselItem, Offcanvas, Stack } from 'react-bootstrap'
+import { Offcanvas, Stack } from 'react-bootstrap'
 import { useShoppingCart } from '../context/ShoppingCartContext'
 import { useProducts } from '../hooks/useProducts'
+import { ShoppingCartProps } from '../types/types'
 import { formatCurrency } from '../utilities/formatCurrency'
 import { CartItem } from './CartItem'
-
-type ShoppingCartProps = {
-  isOpen: boolean
-}
 
 export const ShoppingCart: React.FC<ShoppingCartProps> = ({ isOpen }) => {
   const { closeCart, cartItems } = useShoppingCart()

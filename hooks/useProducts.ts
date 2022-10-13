@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { StoreItemProps } from '../components/StoreItem'
+import { StoreItemProps } from '../types/types'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 

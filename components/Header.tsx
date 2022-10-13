@@ -1,12 +1,20 @@
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { useShoppingCart } from '../context/ShoppingCartContext'
+import { StoreItemProps } from '../types/types'
+import { SearchBox } from './SearchBox'
 
-export const Header = () => {
+type Props = {
+  onSearch: (results: StoreItemProps[]) => void
+}
+
+export const Header: React.FC<Props> = ({ onSearch }) => {
   const { openCart, cartQuantity } = useShoppingCart()
   return (
     <Navbar sticky="top" className="bg-white shadow-sm mb-3">
       <Container>
-        <Nav className="me-auto">search box</Nav>
+        <Nav className="me-auto">
+          <SearchBox onSearch={onSearch} />
+        </Nav>
         {cartQuantity > 0 && (
           <Button
             onClick={openCart}
