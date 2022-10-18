@@ -22,13 +22,13 @@ export const StoreItem: React.FC<StoreItemProps> = ({ id, name, image, price }) 
           ) : (
             <div className="d-flex align-items-center flex-column" style={{ gap: '0.5rem' }}>
               <div className="d-flex align-items-center" style={{ gap: '0.5rem' }}>
-                <Button onClick={() => decreaseCartQuantity(id)} variant="outline-primary">
+                <Button onClick={() => decreaseCartQuantity(id)} variant="outline-primary" size="sm">
                   -
                 </Button>
                 <div>
-                  <span className="fs-3">{quantity}</span> in cart
+                  <span className="fs-5">{quantity}</span> in cart
                 </div>
-                <Button onClick={() => increaseCartQuantity(id)} variant="outline-primary">
+                <Button onClick={() => increaseCartQuantity(id)} variant="outline-primary" size="sm">
                   +
                 </Button>
               </div>
