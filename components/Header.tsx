@@ -1,19 +1,33 @@
+import { useEffect, useState } from 'react'
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { useShoppingCart } from '../context/ShoppingCartContext'
-import { StoreItemProps } from '../types/types'
-import { SearchBox } from './SearchBox'
 
 type Props = {
-  onSearch: (results: StoreItemProps[]) => void
+  onSearch: (text: string) => void
 }
-
 export const Header: React.FC<Props> = ({ onSearch }) => {
   const { openCart, cartQuantity } = useShoppingCart()
+  const [query, setQuery] = useState('')
+
+  useEffect(() => {
+    onSearch(query)
+  }, [query])
+
   return (
     <Navbar sticky="top" className="bg-white shadow-sm mb-3">
       <Container>
         <Nav className="me-auto">
-          <SearchBox onSearch={onSearch} />
+          <div>
+            <input
+              type="search"
+              placeholder="search..."
+              className="border border-secondary rounded p-2"
+              style={{ height: '40px', width: '300px', opacity: '50%' }}
+              onChange={(event) => {
+                setQuery(event.target.value)
+              }}
+            />
+          </div>
         </Nav>
         {cartQuantity > 0 && (
           <Button

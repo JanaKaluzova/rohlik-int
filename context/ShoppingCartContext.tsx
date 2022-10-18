@@ -1,7 +1,6 @@
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react'
 import { ShoppingCart } from '../components/ShoppingCart'
 import { useLocalStorage } from '../hooks/useLocalStorage'
-import { CartItem } from '../types/types'
 import { ShoppingCartContext } from '../types/types'
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext)
