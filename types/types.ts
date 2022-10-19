@@ -34,3 +34,11 @@ export type CartItem = {
   id: number
   quantity: number
 }
+
+export type HeaderProps = {
+  onSearch: (text: string) => void
+}
+
+export type StoreProps = {
+  searchText: string
+}

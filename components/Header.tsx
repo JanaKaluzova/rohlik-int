@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { useShoppingCart } from '../context/ShoppingCartContext'
+import { HeaderProps } from '../types/types'
 
-type Props = {
-  onSearch: (text: string) => void
-}
-export const Header: React.FC<Props> = ({ onSearch }) => {
+export const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   const { openCart, cartQuantity } = useShoppingCart()
   const [query, setQuery] = useState('')
 

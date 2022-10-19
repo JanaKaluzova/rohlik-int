@@ -1,12 +1,9 @@
 import { Col, Container, Row } from 'react-bootstrap'
 import { useProducts } from '../hooks/useProducts'
+import { StoreProps } from '../types/types'
 import { StoreItem } from './StoreItem'
 
-type Props = {
-  searchText: string
-}
-
-export const Store: React.FC<Props> = ({ searchText }) => {
+export const Store: React.FC<StoreProps> = ({ searchText }) => {
   const { data, error } = useProducts()
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
