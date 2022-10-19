@@ -1,11 +1,18 @@
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useMemo, useState } from 'react'
 import { Button, Container, Nav, Navbar } from 'react-bootstrap'
 import { useShoppingCart } from '../context/ShoppingCartContext'
 import { HeaderProps } from '../types/types'
+import debounce from 'lodash.debounce'
 
 export const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   const { openCart, cartQuantity } = useShoppingCart()
   const [query, setQuery] = useState('')
+
+  const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value)
+  }
+
+  const debounceChangeHandler = useMemo(() => debounce(changeHandler, 300), [])
 
   useEffect(() => {
     onSearch(query)
@@ -21,9 +28,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearch }) => {
               placeholder="search..."
               className="border border-secondary rounded p-2"
               style={{ height: '40px', width: '300px', opacity: '50%' }}
-              onChange={(event) => {
-                setQuery(event.target.value)
-              }}
+              onChange={debounceChangeHandler}
             />
           </div>
         </Nav>
